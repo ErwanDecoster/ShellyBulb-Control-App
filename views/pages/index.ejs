@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body>
+
+
+<header>
+  <%- include('../partials/header'); %>
+</header>
+
+<main>
+  <div class="main-container">
+    <div class="device-container">
+      <% devices.forEach(device => { %>
+        <a href="shellybulb/<%= device.id %>"  >  
+            <div class="device">  
+                <div class="inner-device prevent-select"> 
+                  <img class="image-bulb" src="/img/light-bulb-part-2-svgrepo-com.svg" alt="bulb"> 
+                  <%= device.ip %> 
+                </div> 
+            </div> 
+        </a>
+      <% }); %>    
+      <div class="device prevent-select" onclick="createDevice()"> <img src="/img/plus-circle-svgrepo-com.svg" alt="plus"></div>
+    </div>
+
+    
+      <div class="overlay"></div>
+
+      <div class="create-device">
+        <form action="/devices" method="POST">
+          <label for="ip">IP Address:</label>
+          <input type="text" id="ip" name="ip" maxlength="25" required>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" maxlength="30" required>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" maxlength="30" required>
+          <button type="submit">Create</button>
+        </form>
+      </div>
+    
+    </div>
+</div>
+</main>
+
+<script src="/scripts/main-script.js"></script>
+
+</body>
