@@ -2,6 +2,17 @@
 <html lang="en">
 <head>
   <%- include('../partials/head'); %>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href= "/stylesheets/main.css" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap"
+    rel="stylesheet"
+  />
+  <title>Shelly Bulb</title>
 </head>
 <body>
 
@@ -17,13 +28,24 @@
         <a href="shellybulb/<%= device.id %>"  >  
             <div class="device">  
                 <div class="inner-device prevent-select"> 
-                  <img class="image-bulb" src="/img/light-bulb-part-2-svgrepo-com.svg" alt="bulb"> 
-                  <%= device.ip %> 
+                  <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M26.5 33C26.5 37.5 24.5 40 21 40C17.5 40 15.5 37.5 15.5 33M26.5 33C26.5 28.3755 35 23.732 35 16C35 8.26801 28.732 2 21 2C13.268 2 7 8.26801 7 16C7 23.732 15.5 28.3755 15.5 33M26.5 33C21.2279 33 20.7721 33 15.5 33M21 33V17.5M21 17.5C23 17.5 24.5 16 24.5 14M21 17.5C19 17.5 17.5 16 17.5 14" stroke="black" stroke-width="4" stroke-linecap="round"/>
+                  </svg>
+                    
+                  <!-- <img class="image-bulb" src="/img/light-bulb-part-2-svgrepo-com.svg" alt="bulb">  -->
+                  <p><%= device.ip %></p> 
                 </div> 
             </div> 
         </a>
-      <% }); %>    
-      <div class="device prevent-select" onclick="createDevice()"> <img src="/img/plus-circle-svgrepo-com.svg" alt="plus"></div>
+      <% }); %>
+      <button class="device prevent-select" onclick="createDevice()">
+        <div class="inner-device prevent-select">
+          <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 21H29.5M21 21V12.5M21 21H12.5M21 21V29.5M21 2C31.4934 2 40 10.5066 40 21C40 31.4934 31.4934 40 21 40C10.5066 40 2 31.4934 2 21C2 10.5066 10.5066 2 21 2Z" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>  
+          <p>Add a light</p>
+        </div>
+      </button>
     </div>
 
     
@@ -31,13 +53,19 @@
 
       <div class="create-device">
         <form action="/devices" method="POST">
-          <label for="ip">IP Address:</label>
-          <input type="text" id="ip" name="ip" maxlength="25" required>
-          <label for="username">Username:</label>
-          <input type="text" id="username" name="username" maxlength="30" required>
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" maxlength="30" required>
-          <button type="submit">Create</button>
+          <div>
+            <label for="ip">IP Address:</label>
+            <input type="text" id="ip" name="ip" maxlength="25" required>
+          </div>
+          <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" maxlength="30" required>
+          </div>
+          <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" maxlength="30" required>
+          </div>
+          <button type="submit">Add light</button>
         </form>
       </div>
     
