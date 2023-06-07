@@ -16,68 +16,76 @@
   <body>
     <div class="main-wrap">
     <header><%- include('../partials/header'); %></header>
-    
     <div id="main-container">
-      <p class="device-name"><%= ip %></p>
       <section class="visual prevent-select">
+        <p class="device-name"><%= ip %></p>
         <div class="container-bulb">
           <div class="image-bulb">
-            <img
-              src="/img/light-bulb-part-2-svgrepo-com.svg"
-              alt="light bulb"
-            />
+            <svg style="fill: #fff" width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M26.5 33C26.5 37.5 24.5 40 21 40C17.5 40 15.5 37.5 15.5 33M26.5 33C26.5 28.3755 35 23.732 35 16C35 8.26801 28.732 2 21 2C13.268 2 7 8.26801 7 16C7 23.732 15.5 28.3755 15.5 33M26.5 33C21.2279 33 20.7721 33 15.5 33M21 33V17.5M21 17.5C23 17.5 24.5 16 24.5 14M21 17.5C19 17.5 17.5 16 17.5 14" stroke="black" stroke-width="4" stroke-linecap="round"/>
+            </svg>
           </div>
           <div class="circle"></div>
         </div>
       </section>
-
       <section class="setting-sliders">
         <div id="mode-white" class="on prevent-select div-slide">
           <div class="range">
-            <input
-              type="range"
-              id="temp"
-              name="temp"
-              min="3000"
-              max="6500"
-              step="10"
-            />
-            <span id="tempSpan"><output id="tempValue"></output></span>
             <label for="temp">Temperature</label>
+            <div>
+              <input
+                type="range"
+                id="temp"
+                name="temp"
+                min="3000"
+                max="6500"
+                step="10"
+              />
+              <span id="tempSpan">
+                <output id="tempValue"></output>k
+              </span>
+            </div>
           </div>
-
           <div class="range">
-            <input
-              type="range"
-              id="brightness"
-              name="brightness"
-              min="0"
-              max="100"
-            />
-            <span id="brightnessSpan"
-              ><output id="brightnessValue"></output
-            ></span>
             <label for="brightness">Brightness</label>
+            <div>
+              <input
+                type="range"
+                id="brightness"
+                name="brightness"
+                min="0"
+                max="100"
+              />
+              <span id="brightnessSpan">
+                <output id="brightnessValue"></output>%
+              </span>
+            </div>
           </div>
         </div>
-
         <div id="mode-color" class="off prevent-select div-slide">
           <div class="color-choice" class="prevent-select">
             <div class="range">
-              <input type="range" id="white" name="white" min="0" max="255" />
-              <span id="whiteSpan"><output id="whiteValue"></output></span>
               <label for="white">White</label>
+              <div>
+                <input type="range" id="white" name="white" min="0" max="255" />
+                <span id="whiteSpan">
+                  <output id="whiteValue"></output>
+                </span>
+              </div>
             </div>
-
             <div class="range">
-              <input type="range" id="gain" name="gain" min="0" max="100" />
-              <span id="gainSpan"><output id="gainValue"></output></span>
               <label for="gain">Gain</label>
+              <div>
+                <input type="range" id="gain" name="gain" min="0" max="100" />
+                <span id="gainSpan">
+                  <output id="gainValue"></output>
+                </span>
+              </div>
             </div>
-
             <div id="color-container">
-              <label for="color-input" class="prevent-select color-label"
-                >Select color</label
+              <label for="color-input" class="prevent-select color-label">
+                Select color
+              </label
               >
               <input
                 type="color"
@@ -88,7 +96,6 @@
           </div>
         </div>
       </section>
-
       <section class="setting-buttons">
         <div class="container-button">
           <span class="prevent-select checkbox-label">White</span>
@@ -98,7 +105,6 @@
           </label>
           <span class="prevent-select checkbox-label">Color</span>
         </div>
-
         <div class="container-button">
           <span class="prevent-select checkbox-label">OFF</span>
           <label class="checkbox-label-on-off">
@@ -112,9 +118,8 @@
           </label>
           <span class="prevent-select checkbox-label">ON</span>
         </div>
-
         <div class="container-button">
-          <div class="delete-button" onclick="toggleConfirmation('<%= id %>')">
+          <button class="delete-button" onclick="toggleConfirmation('<%= id %>')">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
@@ -130,7 +135,8 @@
                 d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
               />
             </svg>
-          </div>
+            <p>Delete light</p>
+          </button>
         </div>
       </section>
     </div>

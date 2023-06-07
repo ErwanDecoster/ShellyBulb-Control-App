@@ -1,10 +1,12 @@
 // Change circle color
 
 const circle = document.querySelector(".circle");
+const bulb = document.querySelector(".image-bulb svg");
 const colorInput = document.querySelector(".color-input");
 
 colorInput.addEventListener("input", () => {
   circle.style.backgroundColor = colorInput.value;
+  bulb.style.fill = colorInput.value;
 });
 
 // White/color button
