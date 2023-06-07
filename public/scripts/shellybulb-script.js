@@ -46,13 +46,6 @@ function onOff(id) {
     .then(response => {
       if (response.ok) {
         checkbox.checked = true;
-        document.body.style.backgroundColor = "#ffffff";
-        document.body.style.color = "#28292c";
-        if (colorInput.value != "#000000") {
-          circle.style.backgroundColor = colorInput.value;
-        } else if (colorInput.value === "#000000") {
-          circle.style.backgroundColor = "#f6f6f6";
-        }
       } else {
         checkbox.checked = false;
       }
@@ -69,9 +62,6 @@ function onOff(id) {
       .then(response => {
         if (response.ok) {
           checkbox.checked = false;
-          document.body.style.backgroundColor = "#393a3e";
-          document.body.style.color = "#f6f6f6";
-          circle.style.backgroundColor = "#28292c";
         } else {
           checkbox.checked = true;
         }

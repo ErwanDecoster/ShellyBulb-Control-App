@@ -5,10 +5,10 @@ body {
   min-height: 100vh;
   color: #f6f6f6;
   overflow-x: hidden;
-  /* overflow-y: hidden; */
   padding: 0;
   padding-bottom: 12px;
   margin: 0;
+  transition: 0.4s;
 }
 
 .main-wrap {
@@ -98,12 +98,12 @@ section {
   max-width: 100%;
 }
 .device-name {
-  font-size: 24px;
+  font-size: 20px;
 }
 .setting-sliders {
   position: relative;
   height: 178px;
-  overflow-x: hidden;
+  overflow: hidden;
   width: 100%;
   min-width: 206px;
 }
@@ -122,25 +122,37 @@ section {
 .range input {
   appearance: none;
   width: 200px;
-  height: 14px;
+  height: 5px;
   border-radius: 5px;
   outline: none;
   cursor: pointer;
-  margin-top: 20px;
-  border: solid 0.5px #28292c;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 .range input::-webkit-slider-thumb {
   appearance: none;
-  width: 5px;
-  height: 20px;
-  background-color: #585858;
-  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: solid 0.2px #d7d7d7;
+  transition: .3s ease-in-out;
+  backdrop-filter: blur(5px);
 }
+
+.range input::-webkit-slider-thumb:hover {
+  border: solid 0.2px #d7d7d7;
+  backdrop-filter: blur(5px);
+}
+
+.range input::-webkit-slider-thumb:active {
+  transform: scale(1.6);
+}
+
 .range span {
   position: absolute;
-  left: 100%;
+  left: 100%; 
   margin-left: 5px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 /* Temp  */
@@ -154,6 +166,7 @@ section {
     #ffffff,
     #05b3fe
   );
+  border: none;
 }
 
 /* Brightness */
@@ -167,13 +180,17 @@ section {
     #b7b7b7,
     #ffffff
   );
+  border: none;
+}
+
+#white, #gain {
+  background-color: #c7c7c7;
 }
 
 /* Bulb Image */
 
 .container-bulb {
   margin-top: 10px;
-  /* width: 400px; */
   width: 200px;
   height: 200px;
   display: flex;
@@ -311,16 +328,6 @@ section {
 }
 
 input:checked + .slider {
-  background: linear-gradient(
-    90deg,
-    rgb(217, 56, 56),
-    rgb(233, 158, 18),
-    rgb(239, 239, 49),
-    rgb(89, 190, 89),
-    rgb(86, 116, 213),
-    rgb(137, 70, 185),
-    rgb(245, 205, 245)
-  );
   box-shadow: 0 0 2px var(--dark);
 }
 
@@ -409,7 +416,6 @@ input:checked + .slider:before {
 /* DELETE BUTTON */
 
 .delete-button {
-  /* width: 60px; */
   width: fit-content;
   height: 34px;
   border-radius: 50px;
@@ -421,6 +427,11 @@ input:checked + .slider:before {
   border: none;
   box-shadow: 2px 2px 6px 0px #0000001A;
   transition: 0.3s;
+  font-family: inherit;
+}
+
+.delete-button p {
+  margin-left: 2px;
 }
 
 .delete-button:hover {
@@ -457,10 +468,3 @@ input:checked + .slider:before {
 
 
 }
-
-/* @media screen and (max-width: 775px) and (max-height: 640px) {
-  
-  output {
-    visibility: hidden;
-  }
-} */
