@@ -20,3 +20,11 @@ This is an ongoing project that aims to control Shelly Bulbs through a web inter
 6. Access the application in your browser at http://localhost:3000
 
 Note: The ShellyBulb-Control-App requires a MySQL database to store the necessary information for connecting to and controlling Shelly Bulbs. Before running the application, ensure that you have a MySQL database set up and update the configuration file (config.js) with your database credentials.
+
+## License
+
+The ShellyBulb-Control-App is licensed under the MIT License.
+
+## Disclaimer
+
+Please note that this project is currently a work in progress, and there may be limitations or incomplete functionality. Use it at your own risk.
