@@ -14,9 +14,9 @@ This is an ongoing project that aims to control Shelly Bulbs through a web inter
 
 1. Clone the repository
 2. Navigate to the project directory: cd ShellyBulb-Control-App
-3. Install dependencies: npm install
+3. Install dependencies: `npm install`
 4. Configure the MySQL database connection by updating the configuration file.
-5. Start the application: node app
+5. Start the application: `node app`
 6. Access the application in your browser at http://localhost:3000
 
 Note: The ShellyBulb-Control-App requires a MySQL database to store the necessary information for connecting to and controlling Shelly Bulbs. Before running the application, ensure that you have a MySQL database set up and update the configuration file (config.js) with your database credentials.
