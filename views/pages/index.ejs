@@ -27,12 +27,8 @@
       <% devices.forEach(device => { %>
         <a href="shellybulb/<%= device.id %>"  >  
             <div class="device">  
-                <div class="inner-device prevent-select"> 
-                  <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M26.5 33C26.5 37.5 24.5 40 21 40C17.5 40 15.5 37.5 15.5 33M26.5 33C26.5 28.3755 35 23.732 35 16C35 8.26801 28.732 2 21 2C13.268 2 7 8.26801 7 16C7 23.732 15.5 28.3755 15.5 33M26.5 33C21.2279 33 20.7721 33 15.5 33M21 33V17.5M21 17.5C23 17.5 24.5 16 24.5 14M21 17.5C19 17.5 17.5 16 17.5 14" stroke="black" stroke-width="4" stroke-linecap="round"/>
-                  </svg>
-                    
-                  <!-- <img class="image-bulb" src="/img/light-bulb-part-2-svgrepo-com.svg" alt="bulb">  -->
+                <div class="inner-device prevent-select">                    
+                  <img class="image-bulb" src="/img/light-bulb-part-2-svgrepo-com.svg" alt="bulb"> 
                   <p><%= device.ip %></p> 
                 </div> 
             </div> 

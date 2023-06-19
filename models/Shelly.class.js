@@ -11,8 +11,8 @@ module.exports = class Shelly {
     this.blue = 0;
     this.white = 0;
     this.gain = 0;
-    this.temp = 0;
-    this.brightness = 0;
+    this.temp = 3000;
+    this.brightness = 1;
     this.ison = false;
     this.effect = 0;
     this.default_state = "last";
@@ -59,7 +59,7 @@ module.exports = class Shelly {
         if (error.response && error.response.data) {
             console.error("Error : " + error.response.data);
         } else {
-            console.error("Unknown error turning off the bulb !");
+            console.error("Unknown error turning off the bulb!");
         }
         return false;
     }
@@ -83,9 +83,112 @@ module.exports = class Shelly {
         if (error.response && error.response.data) {
             console.error("Error : " + error.response.data);
         } else {
-            console.error("Unknown error turning on the bulb !");
+            console.error("Unknown error turning on the bulb!");
         }
         return false;
     }
   }
+
+  async changeColor() {
+    try {
+      await axios.post("http://" + this.ip + "/color/0",
+      null,
+      {
+        params: {
+            mode: 'color',
+            red: this.red,
+            green: this.green,
+            blue: this.blue,
+        },
+        auth: {
+            username: this.username,
+            password: this.password
+        }
+      });
+      return true;
+    } catch (error) {
+        if (error.response && error.response.data) {
+            console.error("Error : " + error.response.data);
+        } else {
+            console.error("Unknown error changing colors!");
+        }
+        return false;
+    }
+  }
+
+  async modifyGain() {
+    try {
+      await axios.post("http://" + this.ip + "/color/0",
+      null,
+      {
+        params: {
+          mode: 'color',
+          gain: this.gain,
+        },
+        auth: {
+            username: this.username,
+            password: this.password
+        }
+      });
+      return true;
+    } catch (error) {
+        if (error.response && error.response.data) {
+            console.error("Error : " + error.response.data);
+        } else {
+            console.error("Unknown error modifying gain!");
+        }
+        return false;
+    }
+  }
+
+  async modifyBrightness() {
+    try {
+      await axios.post("http://" + this.ip + "/white/0",
+      null,
+      {
+        params: {
+          mode: 'white',
+          brightness: this.brightness,
+        },
+        auth: {
+            username: this.username,
+            password: this.password
+        }
+      });
+      return true;
+    } catch (error) {
+        if (error.response && error.response.data) {
+            console.error("Error : " + error.response.data);
+        } else {
+            console.error("Unknown error modifying brightness!");
+        }
+        return false;
+    }
+  }
+
+  async modifyTemperature() {
+    try {
+      await axios.post("http://" + this.ip + "/white/0",
+      null,
+      {
+        params: {
+          mode: 'white',
+          temp: this.temp,
+        },
+        auth: {
+            username: this.username,
+            password: this.password
+        }
+      });
+      return true;
+    } catch (error) {
+        if (error.response && error.response.data) {
+            console.error("Error : " + error.response.data);
+        } else {
+            console.error("Unknown error modifying temperature!");
+        }
+        return false;
+    }
+  }
+
 };

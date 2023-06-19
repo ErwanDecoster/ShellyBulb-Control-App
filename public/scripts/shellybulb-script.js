@@ -1,7 +1,6 @@
 // Change circle color
 
 const circle = document.querySelector(".circle");
-const bulb = document.querySelector(".image-bulb svg");
 const colorInput = document.querySelector(".color-input");
 
 colorInput.addEventListener("input", () => {
@@ -37,42 +36,38 @@ function toggleSlide() {
 // On/OFF button
 
 function onOff(id) {
-  const checkbox = document.getElementById('onOff');
+  const checkbox = document.getElementById("onOff");
   const isChecked = checkbox.checked;
 
   if (isChecked) {
     // Turning ON
-    fetch(`/api/shellybulb/${id}/on`, { method: 'POST' })
-    .then(response => {
-      if (response.ok) {
-        checkbox.checked = true;
-      } else {
+    fetch(`/api/shellybulb/${id}/on`, { method: "POST" })
+      .then((response) => {
+        if (response.ok) {
+          checkbox.checked = true;
+        } else {
+          checkbox.checked = false;
+        }
+      })
+      .catch((error) => {
+        console.error("Error turning on the bulb:", error);
         checkbox.checked = false;
-      }
-    })
-    .catch(error => {
-      console.error('Error turning on the bulb:', error);
-      checkbox.checked = false;
-    });
-
-
+      });
   } else {
     // Turning OFF
-    fetch(`/api/shellybulb/${id}/off`, { method: 'POST' })
-      .then(response => {
+    fetch(`/api/shellybulb/${id}/off`, { method: "POST" })
+      .then((response) => {
         if (response.ok) {
           checkbox.checked = false;
         } else {
           checkbox.checked = true;
         }
       })
-      .catch(error => {
-        console.error('Error turning off the bulb:', error);
+      .catch((error) => {
+        console.error("Error turning off the bulb:", error);
         checkbox.checked = true;
       });
-
-    }
-
+  }
 }
 
 // Automatically update value on range
@@ -93,11 +88,6 @@ const brightness = document.getElementById("brightness");
 const brightnessRangeValue = document.getElementById("brightnessValue");
 getRangeValue(brightness, brightnessRangeValue);
 
-// White Value
-const white = document.getElementById("white");
-const whiteRangeValue = document.getElementById("whiteValue");
-getRangeValue(white, whiteRangeValue);
-
 // Gain Value
 const gain = document.getElementById("gain");
 const gainRangeValue = document.getElementById("gainValue");
@@ -117,5 +107,136 @@ function toggleConfirmation(id) {
       .catch((error) => {
         console.error("Error deleting bulb:", error);
       });
+  }
+}
+
+// Change bulb color
+
+function hexToRgb(hex) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
+}
+
+async function changeColor(id) {
+  const hexColorInputValue = document.getElementById("color-input").value;
+  const rgbColor = hexToRgb(hexColorInputValue);
+  const red = rgbColor.r;
+  const green = rgbColor.g;
+  const blue = rgbColor.b;
+
+  const body = JSON.stringify({
+    red,
+    green,
+    blue,
+  });
+
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body,
+  };
+
+  try {
+    const response = await fetch(`/api/shellybulb/${id}/color`, requestOptions);
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data.message);
+      return true;
+    } else {
+      console.error("Error changing colors:", response.statusText);
+      return false;
+    }
+  } catch (error) {
+    console.error("Unknown error changing colors:", error);
+    return false;
+  }
+}
+
+// Modifying Gain
+
+async function modifyGain(id) {
+  const gainValue = document.getElementById("gain").value;
+
+  try {
+    const response = await fetch(`/api/shellybulb/${id}/gain`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ gain: gainValue }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data.message);
+      return true;
+    } else {
+      console.error("Error modifying gain:", response.statusText);
+      return false;
+    }
+  } catch (error) {
+    console.error("Unknown error modifying gain:", error);
+    return false;
+  }
+}
+
+// Modifying Brightness
+
+async function modifyBrightness(id) {
+  const brightnessValue = document.getElementById("brightness").value;
+
+  try {
+    const response = await fetch(`/api/shellybulb/${id}/brightness`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ brightness: brightnessValue }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data.message);
+      return true;
+    } else {
+      console.error("Error modifying brightness:", response.statusText);
+      return false;
+    }
+  } catch (error) {
+    console.error("Unknown error modifying brightness:", error);
+    return false;
+  }
+}
+
+// Modifying Temperature
+
+async function modifyTemperature(id) {
+  const tempValue = document.getElementById("temp").value;
+
+  try {
+    const response = await fetch(`/api/shellybulb/${id}/temp`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ temp: tempValue }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data.message);
+      return true;
+    } else {
+      console.error("Error modifying temperature:", response.statusText);
+      return false;
+    }
+  } catch (error) {
+    console.error("Unknown error modifying temperature:", error);
+    return false;
   }
 }

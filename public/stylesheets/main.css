@@ -1,5 +1,5 @@
 body {
-  background-color: #eee;
+  background-color: var(--light);
   font-family: "Montserrat", sans-serif;
   transition: 0.5s;
   color: var(--dark);
@@ -40,7 +40,7 @@ nav {
   height: 48px;
   border-radius: 0px 0px 12px 12px;
   box-shadow: 0 0 12px #3333334b;
-  box-shadow: 2px 4px 6px 0px #0000001A;
+  box-shadow: 2px 4px 6px 0px #0000001a;
 }
 
 nav a {
@@ -95,10 +95,10 @@ a:visited {
   border-radius: 10px;
   transition: 0.2s;
   background-color: #ffffff;
-  box-shadow: 2px 2px 6px 0px #0000001A;
+  box-shadow: 2px 2px 6px 0px #0000001a;
   color: var(--dark);
   cursor: pointer;
-  border: 2px solid #FFD166;
+  border: 2px solid #f6c2c2;
 }
 
 button.device {
@@ -107,15 +107,10 @@ button.device {
 }
 
 .device:hover {
-  /* box-shadow: 0px 1px 5px rgb(251, 251, 251); */
-  box-shadow: 2px 2px 10px 0px #00000066;
-  /* background-color: #f6e8e8; */
-  /* color: var(--dark); */
+  box-shadow: 2px 2px 10px 0px #4f4f4f66;
 }
 
-.device 
-
-.inner-device {
+.device .inner-device {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -153,7 +148,7 @@ button.device {
   left: 50%;
   transform: translate(-50%, -50%);
   background: #ffffff;
-  box-shadow: 2px 2px 6px 0px #0000001A;
+  box-shadow: 2px 2px 6px 0px #0000001a;
   max-width: 320px;
   opacity: 0;
   visibility: hidden;
@@ -175,7 +170,6 @@ button.device {
 .create-device form div {
   width: 100%;
 }
-
 
 .create-device input {
   padding: 5px;
@@ -202,20 +196,16 @@ button.device {
   color: var(--light);
   font-weight: 600;
   border-radius: 5px;
-  /* width: 30%; */
   cursor: pointer;
   align-self: center;
   font-family: inherit;
-  transition: .2s;
-  box-shadow: 2px 2px 6px 0px #0000001A;
+  transition: 0.2s;
+  box-shadow: 2px 2px 6px 0px #0000001a;
 }
 
 .create-device button:hover {
-  /* box-shadow: 0 0px 5px 1px rgba(211, 210, 210, 0.666); */
   box-shadow: 2px 2px 10px 0px #00000066;
 }
-
-
 
 @media screen and (max-width: 520px) {
   .main-container {

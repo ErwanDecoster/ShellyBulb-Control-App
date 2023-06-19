@@ -17,25 +17,11 @@
     <div class="main-wrap">
       <header><%- include('../partials/header'); %></header>
       <div id="main-container">
-        <section class="visual prevent-select">
+        <section class="visual">
           <p class="device-name"><%= ip %></p>
           <div class="container-bulb">
-            <div class="image-bulb">
-              <svg
-                style="fill: #fff"
-                width="42"
-                height="42"
-                viewBox="0 0 42 42"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M26.5 33C26.5 37.5 24.5 40 21 40C17.5 40 15.5 37.5 15.5 33M26.5 33C26.5 28.3755 35 23.732 35 16C35 8.26801 28.732 2 21 2C13.268 2 7 8.26801 7 16C7 23.732 15.5 28.3755 15.5 33M26.5 33C21.2279 33 20.7721 33 15.5 33M21 33V17.5M21 17.5C23 17.5 24.5 16 24.5 14M21 17.5C19 17.5 17.5 16 17.5 14"
-                  stroke="black"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-              </svg>
+            <div class="image-bulb prevent-select">
+              <img src="/img/light-bulb-part-2-svgrepo-com.svg" alt="Light Bulb">
             </div>
             <div class="circle"></div>
           </div>
@@ -52,6 +38,7 @@
                   min="3000"
                   max="6500"
                   step="10"
+                  onChange="modifyTemperature('<%= id %>');"
                 />
                 <span id="tempSpan"> <output id="tempValue"></output>k </span>
               </div>
@@ -65,6 +52,7 @@
                   name="brightness"
                   min="0"
                   max="100"
+                  onChange="modifyBrightness('<%= id %>');"
                 />
                 <span id="brightnessSpan">
                   <output id="brightnessValue"></output>%
@@ -75,24 +63,16 @@
           <div id="mode-color" class="off prevent-select div-slide">
             <div class="color-choice" class="prevent-select">
               <div class="range">
-                <label for="white">White</label>
+                <label for="gain">Gain</label>
                 <div>
                   <input
                     type="range"
-                    id="white"
-                    name="white"
+                    id="gain"
+                    name="gain"
                     min="0"
-                    max="255"
+                    max="100"
+                    onChange="modifyGain('<%= id %>');"
                   />
-                  <span id="whiteSpan">
-                    <output id="whiteValue"></output>
-                  </span>
-                </div>
-              </div>
-              <div class="range">
-                <label for="gain">Gain</label>
-                <div>
-                  <input type="range" id="gain" name="gain" min="0" max="100" />
                   <span id="gainSpan">
                     <output id="gainValue"></output>
                   </span>
@@ -106,6 +86,7 @@
                   type="color"
                   class="color-input prevent-select"
                   id="color-input"
+                  onChange="changeColor('<%= id %>');"
                 />
               </div>
             </div>
