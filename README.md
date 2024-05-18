@@ -8,7 +8,7 @@ This is an ongoing project that aims to control Shelly Bulbs through a web inter
 - Controlling Bulb On/Off
 - Adjusting Colorn and Gain in color mode or Brightness/Temperature in white mode
 - Adding and deleting devices
-- Real-time Updates (Work in Progress) : the interface provides real-time updates to reflect the current state of the connected Shelly Bulbs.
+- Real-time Updates : the interface provides real-time updates to reflect the current state of the connected Shelly Bulbs.
 
 ## Installation
 
