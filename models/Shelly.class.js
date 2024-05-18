@@ -1,11 +1,11 @@
 const axios = require('axios');
 
 module.exports = class Shelly {
-  constructor(ip, username, password) {
+  constructor(ip, username, password, id) {
     this.ip = ip;
     this.username = username;
     this.password = password;
-    this.id = 0;
+    this.id = id;
     this.red = 0;
     this.green = 0;
     this.blue = 0;
@@ -21,6 +21,7 @@ module.exports = class Shelly {
     this.power = 0;
     this.schedule = false;
     this.schedule_rules = null;
+    this.mode = "white";
   }
 
   async connect() {
@@ -31,7 +32,15 @@ module.exports = class Shelly {
             password: this.password
         }
       });
-      console.log(response);
+      this.red = response.data.lights[0].red;
+      this.green = response.data.lights[0].green;
+      this.blue = response.data.lights[0].blue;
+      this.white = response.data.lights[0].white;
+      this.gain = response.data.lights[0].gain;
+      this.temp = response.data.lights[0].temp;
+      this.brightness = response.data.lights[0].brightness;
+      this.ison = response.data.lights[0].ison;
+      this.mode = response.data.lights[0].mode;
     } catch (error) {
         if (error.response && error.response.data) {
             console.error(error.response.data);

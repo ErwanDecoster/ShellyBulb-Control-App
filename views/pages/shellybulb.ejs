@@ -13,12 +13,12 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class="dark-theme || light-theme">
     <div class="main-wrap">
       <header><%- include('../partials/header'); %></header>
       <div id="main-container">
         <section class="visual">
-          <p class="device-name"><%= ip %></p>
+          <p class="device-name"><%= shelly.ip %></p>
           <div class="container-bulb">
             <div class="image-bulb prevent-select">
               <img src="/img/light-bulb-part-2-svgrepo-com.svg" alt="Light Bulb">
@@ -38,7 +38,8 @@
                   min="3000"
                   max="6500"
                   step="10"
-                  onChange="modifyTemperature('<%= id %>');"
+                  value="<%= shelly.temp %>"
+                  onChange="modifyTemperature('<%= shelly.id %>');"
                 />
                 <span id="tempSpan"> <output id="tempValue"></output>k </span>
               </div>
@@ -52,7 +53,8 @@
                   name="brightness"
                   min="0"
                   max="100"
-                  onChange="modifyBrightness('<%= id %>');"
+                  value="<%= shelly.brightness %>"
+                  onChange="modifyBrightness('<%= shelly.id %>');"
                 />
                 <span id="brightnessSpan">
                   <output id="brightnessValue"></output>%
@@ -71,7 +73,8 @@
                     name="gain"
                     min="0"
                     max="100"
-                    onChange="modifyGain('<%= id %>');"
+                    value="<%= shelly.gain %>"
+                    onChange="modifyGain('<%= shelly.id %>');"
                   />
                   <span id="gainSpan">
                     <output id="gainValue"></output>
@@ -86,7 +89,10 @@
                   type="color"
                   class="color-input prevent-select"
                   id="color-input"
-                  onChange="changeColor('<%= id %>');"
+                  data-red="<%= shelly.red %>";
+                  data-green="<%= shelly.green %>";
+                  data-blue="<%= shelly.blue %>";
+                  onChange="changeColor('<%= shelly.id %>');"
                 />
               </div>
             </div>
@@ -99,6 +105,9 @@
               <input
                 id="toggleSlide"
                 type="checkbox"
+                <% if (shelly.mode === "color"){ %>
+                  checked
+                <% } %>  
                 onChange="toggleSlide();"
               />
               <span class="slider round"></span>
@@ -112,7 +121,10 @@
                 id="onOff"
                 type="checkbox"
                 class="checkbox-on-off"
-                onChange="onOff('<%= id %>');"
+                <% if (shelly.ison === true){ %>
+                  checked
+                <% } %> 
+                onChange="onOff('<%= shelly.id %>');"
               />
               <span class="slider-on-off"></span>
             </label>
@@ -121,7 +133,7 @@
           <div class="container-button">
             <button
               class="delete-button"
-              onclick="toggleConfirmation('<%= id %>')"
+              onclick="toggleConfirmation('<%= shelly.id %>')"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

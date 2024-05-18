@@ -1,5 +1,5 @@
 body {
-  background-color: #ffffff;
+  background-color: var(--dark);
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
   min-height: 100vh;
@@ -18,12 +18,10 @@ body {
 }
 
 #main-container {
-  background-color: #fff;
   width: fit-content;
-  min-width: 400px;
   padding: 12px;
   border-radius: 12px;
-  color: #000000;
+  color: var(--light);
   margin: auto;
   display: flex;
   justify-content: center;
@@ -32,6 +30,7 @@ body {
   gap: 16px;
   margin-top: 20px;
 }
+
 
 :root {
   --light: #f6f6f6;
@@ -43,7 +42,7 @@ nav {
   align-items: center;
   justify-content: center;
   gap: 100px;
-  background-color: var(--light);
+  background-color: var(--dark);
   color: var(--dark);
   height: 48px;
   border-radius: 0px 0px 12px 12px;
@@ -59,7 +58,7 @@ nav a {
 
 nav a,
 nav a:visited {
-  color: var(--dark);
+  color: var(--light);
   text-decoration: none;
 }
 
@@ -208,7 +207,7 @@ section {
 .circle {
   border-radius: 50%;
   background-color: #dedede8d;
-  opacity: 20%;
+  opacity: 90%;
   width: 200px;
   height: 200px;
   position: absolute;

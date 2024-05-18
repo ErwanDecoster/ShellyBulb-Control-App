@@ -14,8 +14,7 @@
   />
   <title>Shelly Bulb</title>
 </head>
-<body>
-
+<body class="dark-theme || light-theme">
 
 <header>
   <%- include('../partials/header'); %>
@@ -24,9 +23,9 @@
 <main>
   <div class="main-container">
     <div class="device-container">
-      <% devices.forEach(device => { %>
-        <a href="shellybulb/<%= device.id %>"  >  
-            <div class="device">  
+      <% shellys.sort((a, b) => a.id - b.id).forEach(device => { %>
+        <a href="shellybulb/<%= device.id %>">  
+            <div class="device" style="background-color: rgb(<%= device.red %>, <%= device.green %>, <%= device.blue %>)">
                 <div class="inner-device prevent-select">                    
                   <img class="image-bulb" src="/img/light-bulb-part-2-svgrepo-com.svg" alt="bulb"> 
                   <p><%= device.ip %></p> 

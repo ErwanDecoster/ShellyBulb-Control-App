@@ -13,6 +13,10 @@ const slideButton = document.getElementById("toggleSlide");
 const modeWhite = document.getElementById("mode-white");
 const modeColor = document.getElementById("mode-color");
 
+if (slideButton.checked) {
+  toggleSlide();
+}
+
 function toggleSlide() {
   if (slideButton.checked) {
     modeWhite.style.transform = "translateX(-250px)";
@@ -109,6 +113,20 @@ function toggleConfirmation(id) {
       });
   }
 }
+
+// Pass bulb color to color input
+
+const colorInputRed = colorInput.dataset.red;
+const colorInputGreen = colorInput.dataset.green;
+const colorInputBlue = colorInput.dataset.blue;
+
+function rgbToHex(r, g, b) {
+  return "#" + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1);
+}
+
+const colorInputDefaultValue = rgbToHex(colorInputRed, colorInputGreen, colorInputBlue);
+colorInput.value = colorInputDefaultValue;
+circle.style.backgroundColor = colorInputDefaultValue;
 
 // Change bulb color
 

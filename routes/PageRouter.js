@@ -18,15 +18,21 @@ router.use(express.urlencoded({ extended: true }));
 // === Render pages ===
 
 // Index page
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   const query = "SELECT * FROM shelly";
-  db.query(query, (err, results) => {
+  db.query(query, async (err, results) => {
     if (err) {
       console.error("Error fetching devices:", err);
       res.status(500).send("Internal Server Error");
       return;
     }
-    res.render("pages/index", { devices: results });
+    const shellys = [];
+    await Promise.all(results.map(async shelly => {
+      const shellyInstance = new Shelly(shelly.ip, shelly.username, shelly.password, shelly.id);
+      await shellyInstance.connect();
+      shellys.push(shellyInstance);
+    }));
+    res.render("pages/index", { shellys: shellys });
   });
 });
 
@@ -69,10 +75,10 @@ router.get("/shellybulb/:id", async (req, res) => {
     const ip = results[0].ip;
     const username = results[0].username;
     const password = results[0].password;
-    const shelly = new Shelly(ip, username, password);
+    const shelly = new Shelly(ip, username, password, id);
     await shelly.connect();
     console.log(`Connected to the Shelly #${id}`);
-    res.render("pages/shellybulb", { id, ip });
+    res.render("pages/shellybulb", { shelly });
   });
 });
 
